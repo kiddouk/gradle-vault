@@ -31,6 +31,7 @@ example for Android:
 ```
 $> vault write secret/android-signing-key-credentials key_password=12345 store_password=abcde
 ```
+```
   signingConfigs {
     release {
       keyAlias 'release'
