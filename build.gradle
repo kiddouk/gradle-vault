@@ -8,6 +8,10 @@ buildscript {
   }
 }
 
+plugins {
+  id "com.jfrog.bintray" version "1.7"
+}
+
 apply plugin: "maven-publish"
 apply plugin: "kotlin"
 
@@ -34,5 +38,18 @@ publishing {
       groupId "$group"
       version "$version"
     }
+  }
+}
+
+bintray {
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+  publications = ['mavenJava']
+  pkg {
+    repo = 'maven'
+    name = 'vault'
+    desc = 'Gradle plugin that lets you interact with Hashicorp vault in your tasks.'
+    vcsUrl = 'https://github.com/kiddouk/gradle-vault'
+    licenses = ['MIT']
   }
 }
