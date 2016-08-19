@@ -9,47 +9,57 @@ buildscript {
 }
 
 plugins {
-  id "com.jfrog.bintray" version "1.7"
+  id "com.gradle.plugin-publish" version "0.9.5"
 }
 
-apply plugin: "maven-publish"
 apply plugin: "kotlin"
 
 repositories {
   mavenCentral()
   jcenter()
-  maven { url "https://jitpack.io" }
+  maven {
+    url  "http://dl.bintray.com/kunickiaj/maven"
+  }
 
 }
 
-group = 'io.errorlab.gradle'
 version = '0.0.1'
 
 dependencies {
   compile gradleApi()
   compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.0.3'
-  compile group: 'com.github.kunickiaj', name: 'vault-kotlin', version: '0.2.0'
+  compile group: 'com.adamkunicki', name: 'vault-kotlin', version: '0.2.0'
 }    
-    
-publishing {
-  publications {
-    mavenJava(MavenPublication) {
-      from components.java
-      groupId "$group"
-      version "$version"
+
+
+pluginBundle {
+  website = 'https://github.com/kiddouk/gradle-vault'
+  vcsUrl = 'https://github.com/kiddouk/gradle-vault'
+  // The plugins block can contain multiple plugin entries.
+  //
+  // The name for each plugin block below (greetingsPlugin, goodbyePlugin)
+  // does not affect the plugin configuration, but they need to be unique
+  // for each plugin.
+
+  // Plugin config blocks can set the id, displayName, version, description
+  // and tags for each plugin.
+
+  // id and displayName are mandatory.
+  // If no version is set, the project version will be used.
+  // If no tags or description are set, the tags or description from the
+  // pluginBundle block will be used, but they must be set in one of the
+  // two places.
+
+  plugins {
+
+    // first plugin
+    vaultPlugin {
+      id = 'io.errorlab.gradle.vault'
+      displayName = 'Hashicorp Vault plugin'
+      description = 'Simple plugin that lets you read secret from vault in your gradle tasks'
+      tags = ['vault', 'hashicorp']
+      version = '0.0.2'
     }
   }
-}
 
-bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
-  publications = ['mavenJava']
-  pkg {
-    repo = 'maven'
-    name = 'vault'
-    desc = 'Gradle plugin that lets you interact with Hashicorp vault in your tasks.'
-    vcsUrl = 'https://github.com/kiddouk/gradle-vault'
-    licenses = ['MIT']
-  }
 }

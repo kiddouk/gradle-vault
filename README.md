@@ -10,14 +10,20 @@ It exposes a simple extension to your project so you can use it.
 
 ## Usage
 
+First, this plugin depends on an external library that you need to access like so:
 ```
 buildscript {
   repositories {
-    mavenCentra()
-  }
-  dependencies {
-    classpath 'io.errorlab.gradle:vault:0.0.+'
-  }
+    maven {
+      url  "http://dl.bintray.com/kunickiaj/maven"
+    }
+}
+```
+
+Then simply apply the plugin
+```
+plugins {
+  id "io.errorlab.gradle.vault" version "0.0.2"
 }
 ```
 
