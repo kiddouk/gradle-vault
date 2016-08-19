@@ -1,0 +1,41 @@
+buildscript {
+  ext.kotlin_version = '1.0.3'
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    jcenter()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: "maven-publish"
+apply plugin: "kotlin"
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven { url "https://jitpack.io" }
+  jcenter()
+}
+
+group = 'io.errorlab'
+version = '0.0.1'
+
+dependencies {
+  compile gradleApi()
+  compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.0.3'
+  compile group: 'com.adamkunicki', name: 'vault-kotlin', version: '0.3.0-SNAPSHOT'
+}    
+    
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      groupId "$group"
+      version "$version"
+    }
+  }
+}
