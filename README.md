@@ -16,7 +16,7 @@ buildscript {
     mavenCentra()
   }
   dependencies {
-    classpath 'io.errorlab:gradle-vault:0.0.+'
+    classpath 'io.errorlab.gradle:vault:0.0.+'
   }
 }
 ```

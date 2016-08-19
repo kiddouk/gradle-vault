@@ -1,10 +1,7 @@
 buildscript {
   ext.kotlin_version = '1.0.3'
   repositories {
-    mavenLocal()
     mavenCentral()
-    maven { url "https://jitpack.io" }
-    jcenter()
   }
   dependencies {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -15,19 +12,19 @@ apply plugin: "maven-publish"
 apply plugin: "kotlin"
 
 repositories {
-  mavenLocal()
   mavenCentral()
-  maven { url "https://jitpack.io" }
   jcenter()
+  maven { url "https://jitpack.io" }
+
 }
 
-group = 'io.errorlab'
+group = 'io.errorlab.gradle'
 version = '0.0.1'
 
 dependencies {
   compile gradleApi()
   compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: '1.0.3'
-  compile group: 'com.adamkunicki', name: 'vault-kotlin', version: '0.3.0-SNAPSHOT'
+  compile group: 'com.github.kunickiaj', name: 'vault-kotlin', version: '0.2.0'
 }    
     
 publishing {
