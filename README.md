@@ -23,7 +23,7 @@ buildscript {
 Then simply apply the plugin
 ```
 plugins {
-  id "io.errorlab.gradle.vault" version "0.0.2"
+  id "io.errorlab.gradle.vault" version "0.1.0"
 }
 ```
 
@@ -32,6 +32,14 @@ Make sure that you have `VAULT_ADDR` and `VAULT_TOKEN` defined when using gradle
 project.vault.get("secret/my_secret")
 ```
 
+
+Alternatively, you can configure the plugin like so
+```
+vault {
+  addr = "http://127.0.0.1:8200"
+  token = "dont_put_a_token_here_it_is_unsafe"
+}
+```
 
 example for Android:
 ```
