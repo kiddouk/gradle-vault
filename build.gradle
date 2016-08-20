@@ -23,7 +23,7 @@ repositories {
 
 }
 
-version = '0.0.1'
+version = '0.1.0'
 
 dependencies {
   compile gradleApi()
@@ -58,7 +58,7 @@ pluginBundle {
       displayName = 'Hashicorp Vault plugin'
       description = 'Simple plugin that lets you read secret from vault in your gradle tasks'
       tags = ['vault', 'hashicorp']
-      version = '0.0.2'
+      version = '0.1.0'
     }
   }
 

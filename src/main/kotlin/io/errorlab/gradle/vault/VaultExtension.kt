@@ -4,14 +4,16 @@ import com.adamkunicki.vault.Vault
 import com.adamkunicki.vault.VaultConfiguration
 import com.adamkunicki.vault.api.Secret
 
-val addr = if (System.getenv().get("VAULT_ADDR") != null) System.getenv().get("VAULT_ADDR")!! else ""
-val token = if (System.getenv().get("VAULT_TOKEN") != null) System.getenv().get("VAULT_TOKEN")!! else ""
 
-data class VaultExtension(val vault_addr: String = addr, val vault_token: String = token) {
-    val conf = VaultConfiguration(vault_addr, vault_token)
-    val vault = Vault(conf)
+class VaultExtension(
+        var addr : String? = System.getenv().get("VAULT_ADDR"),
+        var token : String? = System.getenv().get("VAULT_TOKEN")
+) {
 
     fun get(name: String): Secret {
+        val conf = VaultConfiguration(addr!!, token!!)
+        val vault = Vault(conf)
+
         return vault.logical.read(name)
     }
 }
